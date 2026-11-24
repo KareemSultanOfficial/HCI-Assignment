@@ -1,1 +1,17 @@
-<p>user-list works</p>
+<h2>Registered Users</h2>
+
+@if ((userService.users | async)?.length === 0) {
+  <p>No users registered yet.</p>
+}
+
+<ul>
+  @for (user of userService.users | async; track user.username) {
+    <li
+      [class.short]="user.password.length < 5"
+      (click)="delete(user.username)"
+      style="cursor:pointer"
+    >
+      {{ user.username }}
+    </li>
+  }
+</ul>
