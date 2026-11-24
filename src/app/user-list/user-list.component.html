@@ -1,17 +1,18 @@
-<h2>Registered Users</h2>
+<h1 class="page-title">Registered users</h1>
 
 @if ((userService.users | async)?.length === 0) {
-  <p>No users registered yet.</p>
+  <p class="empty-state">No users registered yet. <a routerLink="/register">Add one.</a></p>
+} @else {
+  <ul class="user-list">
+    @for (user of userService.users | async; track user.username) {
+      <li
+        class="user-row"
+        [class.short]="user.password.length < 5"
+        (click)="delete(user.username)"
+      >
+        <span class="username">{{ user.username }}</span>
+        <span class="delete-hint">click to delete</span>
+      </li>
+    }
+  </ul>
 }
-
-<ul>
-  @for (user of userService.users | async; track user.username) {
-    <li
-      [class.short]="user.password.length < 5"
-      (click)="delete(user.username)"
-      style="cursor:pointer"
-    >
-      {{ user.username }}
-    </li>
-  }
-</ul>

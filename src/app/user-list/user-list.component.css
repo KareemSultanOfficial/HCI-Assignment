@@ -1,5 +1,57 @@
-/* styles added in later steps */
-.short {
-  color: red;
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
+.empty-state {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.user-list {
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.user-row:last-child {
+  border-bottom: none;
+}
+
+.user-row:hover {
+  background: #faf8f5;
+}
+
+.user-row:hover .delete-hint {
+  opacity: 1;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* assignment requirement: short password → red */
+.user-row.short .username {
+  color: var(--danger);
+}
+
+.delete-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
