@@ -1,25 +1,28 @@
-<h2>Register</h2>
+<h1 class="page-title">Create an account</h1>
+<p class="page-subtitle">Fill in the details below to sign up.</p>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="username">Username</label><br />
-    <input id="username" type="text" formControlName="username" />
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-card">
+
+  <div class="field">
+    <label class="field-label" for="username">Username</label>
+    <input class="field-input" id="username" type="text" formControlName="username" />
     @if (form.get('username')?.invalid && form.get('username')?.touched) {
-      <p style="color:red">Username is required.</p>
+      <p class="field-error">Username is required.</p>
     }
   </div>
 
-  <div>
-    <label for="password">Password</label><br />
-    <input id="password" type="password" formControlName="password" />
+  <div class="field">
+    <label class="field-label" for="password">Password</label>
+    <input class="field-input" id="password" type="password" formControlName="password" />
     @if (form.get('password')?.invalid && form.get('password')?.touched) {
-      <p style="color:red">Password is required.</p>
+      <p class="field-error">Password is required.</p>
     }
   </div>
 
-  <button type="submit" [disabled]="form.invalid">Sign Up</button>
-</form>
+  @if (usernameExists) {
+    <p class="field-error">That username is already taken.</p>
+  }
 
-@if (usernameExists) {
-  <p style="color:red">Username already exists.</p>
-}
+  <button class="btn-primary" type="submit" [disabled]="form.invalid">Sign Up</button>
+
+</form>
