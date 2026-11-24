@@ -1,1 +1,25 @@
-<p>register works</p>
+<h2>Register</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Username</label><br />
+    <input id="username" type="text" formControlName="username" />
+    @if (form.get('username')?.invalid && form.get('username')?.touched) {
+      <p style="color:red">Username is required.</p>
+    }
+  </div>
+
+  <div>
+    <label for="password">Password</label><br />
+    <input id="password" type="password" formControlName="password" />
+    @if (form.get('password')?.invalid && form.get('password')?.touched) {
+      <p style="color:red">Password is required.</p>
+    }
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Sign Up</button>
+</form>
+
+@if (usernameExists) {
+  <p style="color:red">Username already exists.</p>
+}
