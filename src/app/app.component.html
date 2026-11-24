@@ -1,6 +1,13 @@
-<nav>
-  <a routerLink="/register">Register</a> |
-  <a routerLink="/users">Users</a>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <span class="nav-brand">HCI App</span>
+    <div class="nav-links">
+      <a routerLink="/register">Register</a>
+      <a routerLink="/users">Users</a>
+    </div>
+  </div>
 </nav>
 
-<router-outlet></router-outlet>
+<main class="page-content">
+  <router-outlet></router-outlet>
+</main>
